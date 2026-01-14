@@ -7,7 +7,7 @@ def broadcast():
     mgs=[]
     msg_id=1
     for i in range(Q):
-        act= input.split()
+        act= input().split()
         if act[0]=="S":
             u= int(act[1])
             v=int(act[2])
@@ -28,10 +28,14 @@ def broadcast():
             feed = []
             for mid, sender, critical in mgs:
                 if sender in subscr[u]:
-                    feed.append((mid, critical))
+                    feed.append(mid)
             top_feed = feed[:10]
 
             if top_feed:
+                print("Answer: ", end="")
                 print(" ".join(map(str, top_feed)))
             else:
+                print("Answer: ", end="")
                 print("EMPTY")
+
+broadcast()
