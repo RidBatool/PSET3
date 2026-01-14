@@ -1,14 +1,13 @@
 def evacuation_boats():
-    # -------- INPUT --------
+
     N, Q, limit = map(int, input().split())
     weights = list(map(int, input().split()))
     priority = list(map(int, input().split()))
 
     queries = [input().split() for _ in range(Q)]
 
-    # -------- PART 1: MINIMUM BOATS --------
     people = list(zip(weights, priority))
-    people.sort(key=lambda x: x[0])  # sort by weight
+    people.sort(key=lambda x: x[0])  
 
     left = 0
     right = N - 1
@@ -32,7 +31,6 @@ def evacuation_boats():
 
     print(f"Minimum boats = {boats}")
 
-    # -------- PART 2: QUERIES --------
     for q in queries:
         if q[0] == "CANPAIR":
             x = int(q[1])
@@ -47,11 +45,7 @@ def evacuation_boats():
 
         elif q[0] == "REMAINING":
             B = int(q[1])
-
-            # simulate evacuation with at most B boats
-            people = list(zip(weights, priority))
-            people.sort(key=lambda x: x[0])
-
+            
             left = 0
             right = N - 1
             boats_used = 0
@@ -77,3 +71,4 @@ def evacuation_boats():
                 boats_used += 1
 
             print(N - evacuated)
+evacuation_boats()
