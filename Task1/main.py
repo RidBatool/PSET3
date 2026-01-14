@@ -1,18 +1,32 @@
 def smartcitytemp():
-    K=3
-    list_=[73, 74, 75, 71, 69, 72, 76, 73]
-    result=[0]*len(list_)
-    for i in range(len(list_)):
-        count=0
-        for j in range(i+1, len(list_)):
-            if list_[j]>= list_[i]+K:
-                result[i]=j
-                break
-            elif list_[j]<=list_[i]-K:
-                result[i]=j
-                break
-        
-    print(result)
+ 
+    N, K, Q = map(int, input().split())
+    temps = list(map(int, input().split()))
 
+    alert = [0] * N
+
+    for i in range(N):
+        for j in range(i + 1, N):
+            if temps[j] >= temps[i] + K or temps[j] <= temps[i] - K:
+                alert[i] = j
+                break
+    for _ in range(Q):
+        parts = input().split()
+
+        if parts[0] == "NEXT":
+            X = int(parts[1])
+            if alert[X] == 0:
+                print("No Alert")
+            else:
+                print(alert[X])
+
+        elif parts[0] == "COUNT":
+            L = int(parts[1])
+            R = int(parts[2])
+
+            cnt = 0
+            for i in range(L, R + 1):
+                if alert[i] != 0:
+                    cnt += 1
+            print(cnt)
 smartcitytemp()
-
